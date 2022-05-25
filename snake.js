@@ -80,8 +80,7 @@ function moveSnake(){
             else{
                 snake.pop();
             }
-        }        
-};
+        };        
 function drawSnake(){
     ctx.fillStyle = snakeColor;
     ctx.strokeStyle = snakeBorder;
@@ -90,7 +89,38 @@ function drawSnake(){
         ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize)
     })
 };
-function changeDirection(){};
+function changeDirection(event){
+    const keyPressed = event.keyCode;
+    console.log(keyPressed);
+    const LEFT = 37;
+    const UP = 38;
+    const RIGHT = 38;
+    const DOWN = 48;
+
+    const goingUp = (yVelocity == -unitSize);
+    const goingDown = (yVelocity == unitSize);
+    const goingRight = (xVelocity == unitSize);
+    const goingLeft = (xVelocity == -unitSize);
+
+    switch(true){
+        case(keyPressed == LEFT && !goingRight):
+            xVelocity = -unitSize;
+            yVelocity = 0;
+            break;    
+         case(keyPressed == UP && !goingDown):
+             xVelocity = 0;
+             yVelocity = unitSize;
+                break;    
+         case(keyPressed == RIGHT && !goingLeft):
+              xVelocity = unitSize;
+              yVelocity = 0;
+                 break;   
+         case(keyPressed == RIGHT && !goingUp):
+              xVelocity = 0;
+              yVelocity = unitSize;
+                 break;   
+    }
+};
 function gameOver(){};
 function displayGameOver(){};
 function resetGame(){};
